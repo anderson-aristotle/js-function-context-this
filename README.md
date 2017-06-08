@@ -172,7 +172,7 @@ makes JS both amazingly flexible and absolutely insane.
 
 ### Function Invocation Pattern
 
-When a function is invoked without context, the function is bound to global
+When a function is invoked without explicit context, the function is bound to global
 scope:
 
 ```js
