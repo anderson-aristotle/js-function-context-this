@@ -81,7 +81,7 @@ console.log(a) // What logs?
 
 Example 3:
 ```js
-const reAssign(){
+const reAssign = function () {
   a = b;
   console.log( a );
 }
@@ -95,7 +95,7 @@ console.log(a); // What logs?
 
 Example 4:
 ```js
-const reAssign(a, b){
+const reAssign = function (a, b) {
   a = b;
   console.log( a );
 }
@@ -109,7 +109,7 @@ console.log(a); // What logs?
 
 Example 5:
 ```js
-const reAssign(a, b){
+const reAssign = function (a, b) {
   a = b;
   console.log( a );
 }
