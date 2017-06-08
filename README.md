@@ -290,7 +290,7 @@ How this breaks down:
 If a ```this``` parameter is provided to ```forEach()``` and other Array Methods,
 it will be passed to callback when invoked, for use as its this value.
 Otherwise, the value ```undefined``` will be passed for use as its its value.
-(forEach)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Using_thisArg]
+[forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Using_thisArg)
 
 ```javascript
 let counter = {
