@@ -444,7 +444,8 @@ specified object.
 1.  Is the function called with a context (**implicit binding**), otherwise
 known as an owning or containing object? If so, `this` is *that* context
 object.
-     `let bar = obj1.foo()`
+     `obj1.foo() // this === obj1`
+     `obj1.foo.call( obj2 ) // this === obj2`
 1.  Otherwise, default the `this` (**default binding**). If in `strict mode`,
 pick `undefined`, otherwise pick the `global` object.
      `let bar = foo()`
