@@ -443,8 +443,7 @@ pick `undefined`, otherwise pick the `global` object.
 ## Lab (Pair)
 
 Pair with a partner and follow the instructions in [`index.html`](index.html).
-Your goal in this assignment is to read and understand the code examples
-presented. Take time to contemplate the execution flow, and note any questions
+Your goal in this assignment is to gain experience using the debugger tool in order to further your understanding of what is happening in the code. Take time to contemplate the execution flow, and note any questions
 you have for discussion.
 
 Many of these scripts use the special `debugger` keyword to stop JS execution
