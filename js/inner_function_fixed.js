@@ -1,35 +1,34 @@
-/* jshint debug: true */
-'use strict';
+'use strict'
 
 const user = {
-    tournament:'The Masters',
-    data      :[
-        {name:'T. Woods', handicap: 4},
-        {name:'P. Mickelson', handicap: 1}
-    ],
+  tournament: 'The Masters',
+  data: [
+    {name: 'T. Woods', handicap: 4},
+    {name: 'P. Mickelson', handicap: 1}
+  ],
 
-    showPersonTournament:function () {
-        // Let capture the this pointer in the enclosing function.
-        // And use it in the enclosed anon function.
-        const theUserObj = this;
+  showPersonTournament: function () {
+      // Let capture the this pointer in the enclosing function.
+      // And use it in the enclosed anon function.
+    const theUserObj = this
 
-        this.data.forEach (function (person) {
-            // What is the this pointer?
-            // What is the person variable?
-            // What is the the theUserObj variable?
-            debugger;
-            // The 'this' pointer is still undefined.
-            // The person is a parameter that was passed into this anon
-            // function.
-            // The theUserObj variable is picked up from the enclosing
-            // function because of javascript closure.
-            console.log (person.name + ' is playing at ' + theUserObj.tournament);
-            // T. Woods is playing at the Masters
-            // P. Mickelson is playing at the Masters
-        });
-    }
-};
+    this.data.forEach(function (person) {
+      // What is the this pointer?
+      // What is the person variable?
+      // What is the the theUserObj variable?
+      debugger
+      // The 'this' pointer is still undefined.
+      // The person is a parameter that was passed into this anon
+      // function.
+      // The theUserObj variable is picked up from the enclosing
+      // function because of javascript closure.
+      console.log(person.name + ' is playing at ' + theUserObj.tournament)
+      // T. Woods is playing at the Masters
+      // P. Mickelson is playing at the Masters
+    })
+  }
+}
 
 // Invoke the user object literal's clickHandler function.
 // Note: it's really not being used as a event handler here.
-user.showPersonTournament();
+user.showPersonTournament()
