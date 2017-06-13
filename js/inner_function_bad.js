@@ -4,8 +4,8 @@
 const user = {
     tournament:'The Masters',
     data      :[
-        {name:'T. Woods', handicap:37},
-        {name:'P. Mickelson', handicap:43}
+        {name:'T. Woods', handicap:4},
+        {name:'P. Mickelson', handicap:1}
     ],
 
     showPersonTournament:function () {

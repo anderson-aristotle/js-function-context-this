@@ -2,8 +2,8 @@
 'use strict';
 // This data variable is a global variable
 const data = [
-    {name:'Samantha', handicap:12},
-    {name:'Alexis', handicap:14}
+    {name:'Samantha', handicap:5},
+    {name:'Alexis', handicap:2}
 ];
 console.log(data);
 // user is an object literal with a data property of names and handicaps
@@ -12,8 +12,8 @@ const user = {
 
     // this data variable is a property on the user object
     data    :[
-        {name:'T. Woods', handicap:37},
-        {name:'P. Mickelson', handicap:43}
+        {name:'T. Woods', handicap:1},
+        {name:'P. Mickelson', handicap:4}
     ],
     showData:function () {
         // random number between 0 and 1

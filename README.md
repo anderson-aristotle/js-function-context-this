@@ -2,8 +2,6 @@
 
 # JavaScript: Context \& `this`
 
-![What is this?](http://i.giphy.com/bYGMDZP58u5bi.gif)
-
 ## Objectives
 
 By the end of this lesson, students should be able to:
@@ -283,119 +281,6 @@ How this breaks down:
 
 ## Lab
 On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
-
-## This and Array Methods
-
-If a ```this``` parameter is provided to ```forEach()``` and other Array Methods,
-it will be passed to callback when invoked, for use as its this value.
-Otherwise, the value ```undefined``` will be passed for use as its its value.
-[forEach](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Using_thisArg)
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount) // Note only 1 argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry
-    ++this.count
-  }
-}
-
-counter.add([1,2,3])
-console.log(counter.sum) // what logs?
-```
-
-As stated in the documentation, `this` is `undefined` in an array method unless
-we pass the value of `this` as an argument.
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount, this) // Note 2nd argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry
-    ++this.count
-  }
-}
-
-counter.add([1,2,3])
-console.log(counter.sum) // what logs?
-```
-
-What if we re-defined `add` the following way?
-
-```javascript
-let anyObject = {}
-
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount, anyObject)  // Note 2nd argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry
-    ++this.count
-  }
-}
-
-counter.add([1,2,3])
-console.log(counter.sum) // what logs?
-console.log(anyObject.sum) // what logs?
-```
-
-Since ```counter.add()``` calls ```add()``` with `this` referring to `counter`,
-passing ```anyObject``` into ```forEach()``` makes `this` in the ```forEach()```
-callback refer to ```anyObject```.
-
-[forEach - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-
-## Extra: Fat Arrow
-
-Let's look at this problem again, our `this` value is not being passed into
-the array method so it is `undefined` and we do no get our desired results.
-
-```javascript
-
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount)
-  },
-  sumAndCount: function (entry){
-    this.sum += entry
-    ++this.count
-  }
-}
-
-counter.add([1,2,3])
-console.log(counter.sum) // what logs?
-```
-
-Now with arrow functions (commonly referred to as "fat arrow"),
-the arrow function does not create it's own `this` context
-which means it is not `undefined` in an array method.
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach((e) => { this.sumAndCount(e) })
-  },
-  sumAndCount: function (entry){
-    this.sum += entry
-    ++this.count
-  }
-}
-```
 
 ## Binding
 

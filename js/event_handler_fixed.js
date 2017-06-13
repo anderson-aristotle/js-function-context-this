@@ -3,8 +3,8 @@
 
 const user = {
     data:[
-        {name:'T. Woods', handicap:37},
-        {name:'P. Mickelson', handicap:43}
+        {name:'T. Woods', handicap:4},
+        {name:'P. Mickelson', handicap:1}
     ],
     clickHandler:function () {
         // random number between 0 and 1
