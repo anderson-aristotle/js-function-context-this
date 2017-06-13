@@ -47,10 +47,10 @@ Scope refers to where variables and functions are accessible.
 
 Example 1:
 ```js
-let a = 1;
+let a = 1
 
 if (true) {
-  a = 2;
+  a = 2
   console.log(a) // What logs?
 }
 console.log(a) // What logs?
@@ -58,10 +58,10 @@ console.log(a) // What logs?
 
 Example 2:
 ```js
-let a = 1;
+let a = 1
 
 if (true) {
-  let a = 2;
+  let a = 2
   console.log(a) // What logs?
 }
 console.log(a) // What logs?
@@ -70,56 +70,56 @@ console.log(a) // What logs?
 Example 3:
 ```js
 const reAssign = function () {
-  a = b;
-  console.log( a );
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(); // What logs?
-console.log(a); // What logs?
+reAssign() // What logs?
+console.log(a) // What logs?
 ```
 
 Example 4:
 ```js
 const reAssign = function (a, b) {
-  a = b;
-  console.log( a );
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(); // What logs?
-console.log(a); // What logs?
+reAssign() // What logs?
+console.log(a) // What logs?
 ```
 
 Example 5:
 ```js
 const reAssign = function (a, b) {
-  a = b;
-  console.log( a );
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(a, b); // What logs?
-console.log(a); // What logs?
+reAssign(a, b) // What logs?
+console.log(a) // What logs?
 ```
 
 Scope can be helpful in understanding call context.
 
 ```js
 const reAssign(a, b){
-  a = b;
-  console.log( a );
+  a = b
+  console.log( a )
 }
 
-reAssign(2, 3); // what logs
-reAssign(10, 11); // what logs
-reAssign(10, 11); // what logs
+reAssign(2, 3) // what logs
+reAssign(10, 11) // what logs
+reAssign(10, 11) // what logs
 ```
 
 The value of our parameters `a` and `b` depend on when the function is called,
@@ -136,19 +136,19 @@ let xwing = {
     pilot: null,
 
     setPilot: function(pilot) {
-        this.pilot = pilot;
-        this.update();
+        this.pilot = pilot
+        this.update()
     },
 
     update: function() {
-        console.log('This X-Wing has changed!');
+        console.log('This X-Wing has changed!')
     }
-};
+}
 
-xwing.setPilot("Luke Skywalker");
+xwing.setPilot("Luke Skywalker")
 // >> "This X-Wing has changed!"
 
-console.log(xwing.pilot);
+console.log(xwing.pilot)
 // >> "Luke Skywalker"
 ```
 
@@ -165,10 +165,10 @@ scope:
 
 ```js
 const goBoom = function() {
-    console.log('this is ', this);
+    console.log('this is ', this)
 }
 
-goBoom(); // what logs in the browser vs in node?
+goBoom() // what logs in the browser vs in node?
 ```
 
 Following best practices, we can add `use strict` to get consistent results
@@ -176,10 +176,10 @@ Following best practices, we can add `use strict` to get consistent results
 ```js
 'use strict'
 const goBoom = function() {
-    console.log('this is ', this);
+    console.log('this is ', this)
 }
 
-goBoom(); // what logs in the browser vs in node?
+goBoom() // what logs in the browser vs in node?
 ```
 
 **Context**: `this` refers to the `window` object (global scope).  Here we
@@ -187,7 +187,7 @@ would say "a method is called on an object".  In this case the object is the
 `window`.
 
 **Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
-mode: `'use strict';`
+mode: `'use strict'`
 
 ### Method Invocation Pattern
 
@@ -198,11 +198,11 @@ to its host:
 ```js
 let deathstar = {
     goBoom: function() {
-      console.log('this is ', this);
+      console.log('this is ', this)
   }
-};
+}
 
-deathstar.goBoom();
+deathstar.goBoom()
 // this === deathstar
 ```
 
@@ -221,14 +221,14 @@ while ```apply()``` accepts a single array of arguments.
 
 ```js
 const goBoom = function () {
-  console.log("this refers to ", this);
-};
+  console.log("this refers to ", this)
+}
 
 let deathstar = {
   weapon: 'Planet destroying laser'
-};
+}
 
-goBoom.call(deathstar);
+goBoom.call(deathstar)
 // this === deathstar
 ```
 
@@ -247,17 +247,17 @@ the convention of capitalized names:
 
 ```js
 const Deathstar = function (weapon) {
-  console.log("this is ", this);
-  this.emporer = "Darth Sidius";
-  this.weapon = weapon;
+  console.log("this is ", this)
+  this.emporer = "Darth Sidius"
+  this.weapon = weapon
   this.whatIsThis = function(){
-    console.log("Inside whatIsThis, this is ", this);
-  };
-  console.log("this is ", this);
-};
+    console.log("Inside whatIsThis, this is ", this)
+  }
+  console.log("this is ", this)
+}
 
-let thatsNoMoon = new Deathstar('Mega giant huge laser');
-let endor = new Deathstar('Happy little Ewoks');
+let thatsNoMoon = new Deathstar('Mega giant huge laser')
+let endor = new Deathstar('Happy little Ewoks')
 // this === shiny new Deathstar instance
 ```
 
@@ -270,7 +270,7 @@ How this breaks down:
 1.  Attaches the constructor to the object as a property
 ```// {}.constructor = Deathstar```
 1.  Invokes the constructor function on the new object
-```// {}.constructor(`???`);```
+```// {}.constructor(`???`)```
 1.  Returns the object ```// {}```
 
 ## This and Array Methods
@@ -285,16 +285,16 @@ let counter = {
   sum: 0,
   count: 0,
   add: function (array){
-    array.forEach(this.sumAndCount); // Note only 1 argument
+    array.forEach(this.sumAndCount) // Note only 1 argument
   },
   sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
+    this.sum += entry
+    ++this.count
   }
 }
 
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
+counter.add([1,2,3])
+console.log(counter.sum) // what logs?
 ```
 
 As stated in the documentation, `this` is `undefined` in an array method unless
@@ -305,38 +305,38 @@ let counter = {
   sum: 0,
   count: 0,
   add: function (array){
-    array.forEach(this.sumAndCount, this); // Note 2nd argument
+    array.forEach(this.sumAndCount, this) // Note 2nd argument
   },
   sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
+    this.sum += entry
+    ++this.count
   }
 }
 
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
+counter.add([1,2,3])
+console.log(counter.sum) // what logs?
 ```
 
 What if we re-defined `add` the following way?
 
 ```javascript
-let anyObject = {};
+let anyObject = {}
 
 let counter = {
   sum: 0,
   count: 0,
   add: function (array){
-    array.forEach(this.sumAndCount, anyObject);  // Note 2nd argument
+    array.forEach(this.sumAndCount, anyObject)  // Note 2nd argument
   },
   sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
+    this.sum += entry
+    ++this.count
   }
 }
 
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
-console.log(anyObject.sum); // what logs?
+counter.add([1,2,3])
+console.log(counter.sum) // what logs?
+console.log(anyObject.sum) // what logs?
 ```
 
 Since ```counter.add()``` calls ```add()``` with `this` referring to `counter`,
@@ -356,16 +356,16 @@ let counter = {
   sum: 0,
   count: 0,
   add: function (array){
-    array.forEach(this.sumAndCount);
+    array.forEach(this.sumAndCount)
   },
   sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
+    this.sum += entry
+    ++this.count
   }
 }
 
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
+counter.add([1,2,3])
+console.log(counter.sum) // what logs?
 ```
 
 Now with arrow functions (commonly referred to as "fat arrow"),
@@ -377,11 +377,11 @@ let counter = {
   sum: 0,
   count: 0,
   add: function (array){
-    array.forEach((e) => { this.sumAndCount(e) });
+    array.forEach((e) => { this.sumAndCount(e) })
   },
   sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
+    this.sum += entry
+    ++this.count
   }
 }
 ```
@@ -402,14 +402,14 @@ let user = {
           { name:"C. Austin", handicap:0 }
         ],
   clickHandler: function(event){
-    let randomNum = ((Math.random() * 2 | 0) + 1) - 1; // random number between 0 and 1​
+    let randomNum = ((Math.random() * 2 | 0) + 1) - 1 // random number between 0 and 1​
     // This line is adding a random person from the data array to the text field​
-    $("input").val(this.data[randomNum].name + " " + this.data[randomNum].age);
+    $("input").val(this.data[randomNum].name + " " + this.data[randomNum].age)
   }
 }
 ​
 ​// Assign an eventHandler to the button's click event​
-$("button").on('click', user.clickHandler);
+$("button").on('click', user.clickHandler)
 ```
 
 What is happening and will this work?
@@ -418,7 +418,7 @@ With the `.bind()` method we can bind the context of user.clickHandler to the
 user object like so:
 
 ```javascript
-$("button").on('click', user.clickHandler.bind(user));
+$("button").on('click', user.clickHandler.bind(user))
 ```
 
 ## Summary
