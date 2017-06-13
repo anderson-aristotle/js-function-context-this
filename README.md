@@ -189,6 +189,10 @@ would say "a method is called on an object".  In this case the object is the
 **Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
 mode: `'use strict'`
 
+## Demo
+
+Let's take a look at the `global_function.js` file to see an example of this pattern.
+
 ### Method Invocation Pattern
 
 When a function is defined on an object, it is said to be a *method* of the
@@ -207,6 +211,10 @@ deathstar.goBoom()
 ```
 
 **Context**: `this` refers to the host object.
+
+## Code Along
+
+Together, let's take a look at `object_literal.js` and try to determine what's happening in there.
 
 ### Call/Apply Invocation Pattern
 

@@ -1,4 +1,3 @@
-/* jshint debug: true */
 'use strict';
 /*
   We use this similar to the way we use pronouns in natural
@@ -21,15 +20,7 @@ const person = {
         // Hey, what is the 'this' variable pointing to?
         debugger;
 
-        // Yep, it's pointing to the person object literal.
-
-        // Why?
-        // Because the runtime Context of this function is
-        // the person object literal.
-
-        // Why?
-        // Because we invoked this function/method at RUNTIME
-        // like this 'person.fullName' below.
+        //Why?
 
         // See how we use 'this' here just like we used 'he' in the example sentence?
         console.log(this.firstName + ' ' + this.lastName);
@@ -40,9 +31,7 @@ const person = {
     }
 };
 
-// The Context is the object literal 'person'
-// The 'this' pointer in the fullName method is the object literal
-// we defined above, 'person'.
+//What is 'this' pointing to below?
 console.log('This person\'s full name is ' + person.fullName());
 
 // THE CONTEXT AND THEREFORE THE 'this' POINTER ARE ALWAYS SET AT RUN TIME,
