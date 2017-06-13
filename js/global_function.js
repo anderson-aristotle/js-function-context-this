@@ -1,12 +1,12 @@
 // Global variables
-/* jshint debug: true */
 // 'use strict';
 
-const firstName = "Peter", lastName = "Ally";
+var firstName = "Peter"
+var lastName = "Ally"
 console.log(firstName + ' ' + lastName);
 
 // Global function
-const showFullName = function () {
+const showFullName = function() {
 
     // Hey, what is the 'this' variable pointing to?
     debugger;
@@ -41,9 +41,6 @@ const person = {
 // The execution "Context" is Global, or window in a browser.
 // So the 'this' pointer is window.
 showFullName (); // Peter Ally
-
-// window is the object that all global variables and functions are defined on, hence:
-window.showFullName (); // Peter Ally
 
 // "this" inside the showFullName () method that is defined inside the person object still refers to the person object, hence:
 person.showFullName (); // Penelope Barrymore

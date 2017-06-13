@@ -1,4 +1,25 @@
 
+-Show `this.alert()` example for window scope in browser
+
+- In Node, defining a variable in "global" scope wil actually be local to that module. The global object contains stuff like `require`, etc.
+
+- For block scope examples, feel free to show that we don'y have to prepend with `if(true)`. Also, ask before running the code.
+
+### Block scope examples
+- 1st Example: We are changing the global variable to `a` : 2,2
+
+
+- 2nd Example: We are defining a new variable called `a` : 2,1
+
+
+- 3rd Example: We are reassigning a global variable : 2,2
+
+
+- 4th Example: We are defining a function that takes two parameters, but not passing anything to it : `undefined`, 1
+
+
+- 5th Example: We are defining a function that takes two parameters, but this time we are actually passing arguments : 2,1
+
 ### Code annotations for README code
 #### Changes by call context
 ```js

@@ -210,6 +210,7 @@ deathstar.goBoom()
 
 **Context**: `this` refers to the host object.
 
+
 ## Code Along
 
 Together, let's take a look at `object_literal.js` and try to determine what's happening in there.
