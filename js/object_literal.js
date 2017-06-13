@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 /*
   We use this similar to the way we use pronouns in natural
   languages like English and French. We write: “John is running
@@ -13,26 +13,25 @@
 
 // Create an object literal for person.
 const person = {
-    firstName: 'Penelope',
-    lastName: 'Barrymore',
-    fullName: function () {
-
+  firstName: 'Penelope',
+  lastName: 'Barrymore',
+  fullName: function () {
         // Hey, what is the 'this' variable pointing to?
-        debugger;
+    debugger
 
-        //Why?
+        // Why?
 
         // See how we use 'this' here just like we used 'he' in the example sentence?
-        console.log(this.firstName + ' ' + this.lastName);
+    console.log(this.firstName + ' ' + this.lastName)
 
         // Well, we could have also written:
-        console.log(person.firstName + ' ' + person.lastName);
-        return this.firstName + ' ' + this.lastName;
-    }
-};
+    console.log(person.firstName + ' ' + person.lastName)
+    return this.firstName + ' ' + this.lastName
+  }
+}
 
-//What is 'this' pointing to below?
-console.log('This person\'s full name is ' + person.fullName());
+// What is 'this' pointing to below?
+console.log('This person\'s full name is ' + person.fullName())
 
 // THE CONTEXT AND THEREFORE THE 'this' POINTER ARE ALWAYS SET AT RUN TIME,
 // WHEN THE FUNCTION IS ACTUALLY EXECUTED OR INVOKED!!!

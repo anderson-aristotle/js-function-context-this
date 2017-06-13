@@ -58,9 +58,12 @@ console.log(xwing.pilot);
 
 Because xwing is the calling context, javascript looks for setPilot on xwing. It finds it, and executes it, because there are perentheses.
 
-
+### global_function Demo:
+We are introducing method invocation pattern here, which kind of seems weird because we don't formally go over it until the next section. However, I think the idea is to show that the enclosing block matters.
 
 ### object_literal Code Along:
+*Have them paste the correct js file into `index.html`*
+
 Yep, it's pointing to the person object literal.
 
 Why? Because the runtime Context of this function is
