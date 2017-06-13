@@ -191,7 +191,7 @@ mode: `'use strict'`
 
 ## Demo
 
-Let's take a look at the `global_function.js` file to see an example of this pattern.
+Let's take a look at the `global_function.js` file to see an example of this pattern. We are going to use `index.html` to execute this code.
 
 ### Method Invocation Pattern
 
@@ -280,6 +280,9 @@ How this breaks down:
 1.  Invokes the constructor function on the new object
 ```// {}.constructor(`???`)```
 1.  Returns the object ```// {}```
+
+## Lab
+On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
 
 ## This and Array Methods
 
@@ -450,7 +453,7 @@ pick `undefined`, otherwise pick the `global` object.
 
 ## Lab (Pair)
 
-Pair with a partner and follow the instructions in [`index.html`](index.html).
+Pair with a partner and follow the instructions in [`index.html`](index.html) for the remaining files that we have not already looked at.
 Your goal in this assignment is to gain experience using the debugger tool in order to further your understanding of what is happening in the code. Take time to contemplate the execution flow, and note any questions
 you have for discussion.
 
