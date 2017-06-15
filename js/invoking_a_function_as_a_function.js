@@ -1,34 +1,17 @@
 // Invoking a Function as a Function
 // 'use strict';
 
-console.log("this(before):", this);
+console.log('this(before):', this)
 
-const hello = function(thing) {
-  console.log("this(in hello):", this);
-  console.log("Hello " + thing);
-};
+const hello = function (thing) {
+  console.log('this(in hello):', this)
+  console.log('Hello ' + thing)
+}
 
 // this:
-hello("World!");
+hello('World!')
 
 // This function does not belong to any object.
 // Therefore it belongs to the default global object.
 
-// So, it is the same as:
-// window.hello("World!")
-
-// ************
-// This desugars to (the underlying implementation):
-// hello.call(window, "World!");
-
-// !!!!!!!!!!!!!!!!!!
-// WARNING
-// !!!!!!!!!!!!!!!!!!
-
-// **GOTCHA** Global variables, methods, or functions can easily
-// create name conflicts and bugs in the global object.
-
-
-// **Gotcha**: This behavior has changed in ECMAScript 5
-// only when using strict mode[2]: 'use strict';
-// uncomment `use strict` to see the difference
+// Uncomment `use strict` to see the difference

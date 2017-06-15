@@ -2,8 +2,6 @@
 
 # JavaScript: Context \& `this`
 
-![What is this?](http://i.giphy.com/bYGMDZP58u5bi.gif)
-
 ## Objectives
 
 By the end of this lesson, students should be able to:
@@ -35,22 +33,10 @@ this repository.
 **In browsers**
 - The top-level scope is the global scope.
 - In the top-level scope in browsers `this` is equivalent to ```window```.
-- That means that in browsers if you're in the global scope
-```let```/```const```/```var``` will define a global variable.
 
 **In Node.js**
 - The top-level scope is not the global scope.
-- In the top-level code in a Node module, `this` is equivalent to `module.exports`.
-- That means if you ```let```/```const```/```var``` inside a Node.js module will be local to that module.
 - Node does have a global variable named ```global``` and is documented [here](https://nodejs.org/api/globals.html#globals_global).
-- Since ```let```/```const```/```var``` variables are local to each module,
-```global``` is the true global variable that is shared across modules.
-
-```js
-console.log("In Browser vs In Node: this is ", this);
-console.log("this === window, ", this === window);
-console.log("this === module.exports, ", this === module.exports);
-```
 
 **GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
 
@@ -59,10 +45,10 @@ Scope refers to where variables and functions are accessible.
 
 Example 1:
 ```js
-let a = 1;
+let a = 1
 
 if (true) {
-  a = 2;
+  a = 2
   console.log(a) // What logs?
 }
 console.log(a) // What logs?
@@ -70,10 +56,10 @@ console.log(a) // What logs?
 
 Example 2:
 ```js
-let a = 1;
+let a = 1
 
 if (true) {
-  let a = 2;
+  let a = 2
   console.log(a) // What logs?
 }
 console.log(a) // What logs?
@@ -81,57 +67,57 @@ console.log(a) // What logs?
 
 Example 3:
 ```js
-const reAssign(){
-  a = b;
-  console.log( a );
+const reAssign = function () {
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(); // What logs?
-console.log(a); // What logs?
+reAssign() // What logs?
+console.log(a) // What logs?
 ```
 
 Example 4:
 ```js
-const reAssign(a, b){
-  a = b;
-  console.log( a );
+const reAssign = function (a, b) {
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(); // What logs?
-console.log(a); // What logs?
+reAssign() // What logs?
+console.log(a) // What logs?
 ```
 
 Example 5:
 ```js
-const reAssign(a, b){
-  a = b;
-  console.log( a );
+const reAssign = function (a, b) {
+  a = b
+  console.log( a )
 }
 
-let a = 1;
-let b = 2;
+let a = 1
+let b = 2
 
-reAssign(a, b); // What logs?
-console.log(a); // What logs?
+reAssign(a, b) // What logs?
+console.log(a) // What logs?
 ```
 
 Scope can be helpful in understanding call context.
 
 ```js
 const reAssign(a, b){
-  a = b;
-  console.log( a );
+  a = b
+  console.log( a )
 }
 
-reAssign(2, 3); // what logs
-reAssign(10, 11); // what logs
-reAssign(10, 11); // what logs
+reAssign(2, 3) // what logs
+reAssign(10, 11) // what logs
+reAssign(10, 11) // what logs
 ```
 
 The value of our parameters `a` and `b` depend on when the function is called,
@@ -148,19 +134,19 @@ let xwing = {
     pilot: null,
 
     setPilot: function(pilot) {
-        this.pilot = pilot;
-        this.update();
+        this.pilot = pilot
+        this.update()
     },
 
     update: function() {
-        console.log('This X-Wing has changed!');
+        console.log('This X-Wing has changed!')
     }
-};
+}
 
-xwing.setPilot("Luke Skywalker");
+xwing.setPilot("Luke Skywalker")
 // >> "This X-Wing has changed!"
 
-console.log(xwing.pilot);
+console.log(xwing.pilot)
 // >> "Luke Skywalker"
 ```
 
@@ -172,15 +158,15 @@ makes JS both amazingly flexible and absolutely insane.
 
 ### Function Invocation Pattern
 
-When a function is invoked without context, the function is bound to global
+When a function is invoked without explicit context, the function is bound to global
 scope:
 
 ```js
 const goBoom = function() {
-    console.log('this is ', this);
+    console.log('this is ', this)
 }
 
-goBoom(); // what logs in the browser vs in node?
+goBoom() // what logs in the browser vs in node?
 ```
 
 Following best practices, we can add `use strict` to get consistent results
@@ -188,10 +174,10 @@ Following best practices, we can add `use strict` to get consistent results
 ```js
 'use strict'
 const goBoom = function() {
-    console.log('this is ', this);
+    console.log('this is ', this)
 }
 
-goBoom(); // what logs in the browser vs in node?
+goBoom() // what logs in the browser vs in node?
 ```
 
 **Context**: `this` refers to the `window` object (global scope).  Here we
@@ -199,7 +185,11 @@ would say "a method is called on an object".  In this case the object is the
 `window`.
 
 **Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
-mode: `'use strict';`
+mode: `'use strict'`
+
+## Demo
+
+Let's take a look at the `global_function.js` file to see an example of this pattern. We are going to use `index.html` to execute this code.
 
 ### Method Invocation Pattern
 
@@ -210,15 +200,20 @@ to its host:
 ```js
 let deathstar = {
     goBoom: function() {
-      console.log('this is ', this);
+      console.log('this is ', this)
   }
-};
+}
 
-deathstar.goBoom();
+deathstar.goBoom()
 // this === deathstar
 ```
 
 **Context**: `this` refers to the host object.
+
+
+## Code Along
+
+Together, let's take a look at `object_literal.js` and try to determine what's happening in there.
 
 ### Call/Apply Invocation Pattern
 
@@ -233,14 +228,14 @@ while ```apply()``` accepts a single array of arguments.
 
 ```js
 const goBoom = function () {
-  console.log("this refers to ", this);
-};
+  console.log("this refers to ", this)
+}
 
 let deathstar = {
   weapon: 'Planet destroying laser'
-};
+}
 
-goBoom.call(deathstar);
+goBoom.call(deathstar)
 // this === deathstar
 ```
 
@@ -259,17 +254,17 @@ the convention of capitalized names:
 
 ```js
 const Deathstar = function (weapon) {
-  console.log("this is ", this);
-  this.emporer = "Darth Sidius";
-  this.weapon = weapon;
+  console.log("this is ", this)
+  this.emporer = "Darth Sidius"
+  this.weapon = weapon
   this.whatIsThis = function(){
-    console.log("Inside whatIsThis, this is ", this);
-  };
-  console.log("this is ", this);
-};
+    console.log("Inside whatIsThis, this is ", this)
+  }
+  console.log("this is ", this)
+}
 
-let thatsNoMoon = new Deathstar('Mega giant huge laser');
-let endor = new Deathstar('Happy little Ewoks');
+let thatsNoMoon = new Deathstar('Mega giant huge laser')
+let endor = new Deathstar('Happy little Ewoks')
 // this === shiny new Deathstar instance
 ```
 
@@ -282,121 +277,11 @@ How this breaks down:
 1.  Attaches the constructor to the object as a property
 ```// {}.constructor = Deathstar```
 1.  Invokes the constructor function on the new object
-```// {}.constructor(`???`);```
+```// {}.constructor(`???`)```
 1.  Returns the object ```// {}```
 
-## This and Array Methods
-
-If a ```this``` parameter is provided to ```forEach()``` and other Array Methods,
-it will be passed to callback when invoked, for use as its this value.
-Otherwise, the value ```undefined``` will be passed for use as its its value.
-(forEach)[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Using_thisArg]
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount); // Note only 1 argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
-  }
-}
-
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
-```
-
-As stated in the documentation, `this` is `undefined` in an array method unless
-we pass the value of `this` as an argument.
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount, this); // Note 2nd argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
-  }
-}
-
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
-```
-
-What if we re-defined `add` the following way?
-
-```javascript
-let anyObject = {};
-
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount, anyObject);  // Note 2nd argument
-  },
-  sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
-  }
-}
-
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
-console.log(anyObject.sum); // what logs?
-```
-
-Since ```counter.add()``` calls ```add()``` with `this` referring to `counter`,
-passing ```anyObject``` into ```forEach()``` makes `this` in the ```forEach()```
-callback refer to ```anyObject```.
-
-[forEach - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
-
-## Extra: Fat Arrow
-
-Let's look at this problem again, our `this` value is not being passed into
-the array method so it is `undefined` and we do no get our desired results.
-
-```javascript
-
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach(this.sumAndCount);
-  },
-  sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
-  }
-}
-
-counter.add([1,2,3]);
-console.log(counter.sum); // what logs?
-```
-
-Now with arrow functions (commonly referred to as "fat arrow"),
-the arrow function does not create it's own `this` context
-which means it is not `undefined` in an array method.
-
-```javascript
-let counter = {
-  sum: 0,
-  count: 0,
-  add: function (array){
-    array.forEach((e) => { this.sumAndCount(e) });
-  },
-  sumAndCount: function (entry){
-    this.sum += entry;
-    ++this.count;
-  }
-}
-```
+## Lab
+On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
 
 ## Binding
 
@@ -414,14 +299,14 @@ let user = {
           { name:"C. Austin", handicap:0 }
         ],
   clickHandler: function(event){
-    let randomNum = ((Math.random() * 2 | 0) + 1) - 1; // random number between 0 and 1​
+    let randomNum = ((Math.random() * 2 | 0) + 1) - 1 // random number between 0 and 1​
     // This line is adding a random person from the data array to the text field​
-    $ ("input").val(this.data[randomNum].name + " " + this.data[randomNum].age);
+    $("input").val(this.data[randomNum].name + " " + this.data[randomNum].age)
   }
 }
 ​
 ​// Assign an eventHandler to the button's click event​
-$ ("button").on('click', user.clickHandler);
+$("button").on('click', user.clickHandler)
 ```
 
 What is happening and will this work?
@@ -430,7 +315,7 @@ With the `.bind()` method we can bind the context of user.clickHandler to the
 user object like so:
 
 ```javascript
-$ ("button").on('click', user.clickHandler.bind(user));
+$("button").on('click', user.clickHandler.bind(user))
 ```
 
 ## Summary
@@ -444,7 +329,8 @@ specified object.
 1.  Is the function called with a context (**implicit binding**), otherwise
 known as an owning or containing object? If so, `this` is *that* context
 object.
-     `let bar = obj1.foo()`
+     `obj1.foo() // this === obj1`
+     `obj1.foo.call( obj2 ) // this === obj2`
 1.  Otherwise, default the `this` (**default binding**). If in `strict mode`,
 pick `undefined`, otherwise pick the `global` object.
      `let bar = foo()`
@@ -453,9 +339,8 @@ pick `undefined`, otherwise pick the `global` object.
 
 ## Lab (Pair)
 
-Pair with a partner and follow the instructions in [`index.html`](index.html).
-Your goal in this assignment is to read and understand the code examples
-presented. Take time to contemplate the execution flow, and note any questions
+Pair with a partner and follow the instructions in [`index.html`](index.html) for the remaining files that we have not already looked at.
+Your goal in this assignment is to gain experience using the debugger tool in order to further your understanding of what is happening in the code. Take time to contemplate the execution flow, and note any questions
 you have for discussion.
 
 Many of these scripts use the special `debugger` keyword to stop JS execution

@@ -1,5 +1,4 @@
-/* jshint debug: true */
-'use strict';
+'use strict'
 /*
   We use this similar to the way we use pronouns in natural
   languages like English and French. We write: “John is running
@@ -14,36 +13,25 @@
 
 // Create an object literal for person.
 const person = {
-    firstName: 'Penelope',
-    lastName: 'Barrymore',
-    fullName: function () {
-
+  firstName: 'Penelope',
+  lastName: 'Barrymore',
+  fullName: function () {
         // Hey, what is the 'this' variable pointing to?
-        debugger;
-
-        // Yep, it's pointing to the person object literal.
+    debugger
 
         // Why?
-        // Because the runtime Context of this function is
-        // the person object literal.
-
-        // Why?
-        // Because we invoked this function/method at RUNTIME
-        // like this 'person.fullName' below.
 
         // See how we use 'this' here just like we used 'he' in the example sentence?
-        console.log(this.firstName + ' ' + this.lastName);
+    console.log(this.firstName + ' ' + this.lastName)
 
         // Well, we could have also written:
-        console.log(person.firstName + ' ' + person.lastName);
-        return this.firstName + ' ' + this.lastName;
-    }
-};
+    console.log(person.firstName + ' ' + person.lastName)
+    return this.firstName + ' ' + this.lastName
+  }
+}
 
-// The Context is the object literal 'person'
-// The 'this' pointer in the fullName method is the object literal
-// we defined above, 'person'.
-console.log('This person\'s full name is ' + person.fullName());
+// What is 'this' pointing to below?
+console.log('This person\'s full name is ' + person.fullName())
 
 // THE CONTEXT AND THEREFORE THE 'this' POINTER ARE ALWAYS SET AT RUN TIME,
 // WHEN THE FUNCTION IS ACTUALLY EXECUTED OR INVOKED!!!
