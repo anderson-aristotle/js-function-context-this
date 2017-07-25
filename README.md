@@ -110,7 +110,7 @@ console.log(a) // What logs?
 Scope can be helpful in understanding call context.
 
 ```js
-const reAssign(a, b){
+const reAssign = function (a, b) {
   a = b
   console.log( a )
 }
