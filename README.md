@@ -259,19 +259,19 @@ represent proper nouns within our application. Therefore they should follow
 the convention of capitalized names:
 
 ```js
-const Deathstar = function (weapon) {
-  console.log('this is ', this)
-  this.emporer = 'Darth Sidius'
-  this.weapon = weapon
-  this.whatIsThis = function(){
-    console.log('Inside whatIsThis, this is ', this)
+const Planet = function (color, name) {
+    console.log('this is ', this)
+    this.name = name
+    this.color = color
+    this.whatIsThis = function () {
+        console.log('Inside whatIsThis, this is ', this)
   }
   console.log('this is ', this)
 }
 
-let thatsNoMoon = new Deathstar('Mega giant huge laser')
-let endor = new Deathstar('Happy little Ewoks')
-// this === shiny new Deathstar instance
+const mercury = new Planet('Mercury', 'slightly brownish')
+const pluto = new Planet('Pluto', 'blue')
+// this === shiny new Planet instance
 ```
 
 **Context**: `this` refers to the newly-created object instance.  Here we
