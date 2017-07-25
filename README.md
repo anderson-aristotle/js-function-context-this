@@ -32,11 +32,11 @@ this repository.
 ## `this` in the Global Scope Depends on the Environment
 **In browsers**
 - The top-level scope is the global scope.
-- In the top-level scope in browsers `this` is equivalent to ```window```.
+- In the top-level scope in browsers `this` is equivalent to `window`.
 
 **In Node.js**
 - The top-level scope is not the global scope.
-- Node does have a global variable named ```global``` and is documented [here](https://nodejs.org/api/globals.html#globals_global).
+- Node does have a global variable named `global` and is documented [here](https://nodejs.org/api/globals.html#globals_global).
 
 **GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
 
@@ -224,8 +224,8 @@ and [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference
 These methods will invoke the function with a provided
 contextual object.
 While the syntax of these functions are almost identical,
-the fundamental difference is that ```call()``` accepts an argument list,
-while ```apply()``` accepts a single array of arguments.
+the fundamental difference is that `call()` accepts an argument list,
+while `apply()` accepts a single array of arguments.
 
 ```js
 const person = {
@@ -251,7 +251,7 @@ person.fullName.call(myObject) // What will this return?
 ### Constructor Invocation Pattern
 
 Any function may act as a constructor for new object instances. New object
-instances may be constructed with the `"new"` keyword while invoking a
+instances may be constructed with the `new` keyword while invoking a
 function.
 
 Constructors are very similar to Ruby class constructors, in that they
@@ -279,12 +279,12 @@ would say "the object receives the method".
 
 How this breaks down:
 
-1.  Creates a new empty object ({}) ```// {}```
+1.  Creates a new empty object ({}) `// {}`
 1.  Attaches the constructor to the object as a property
-```// {}.constructor = Deathstar```
+`// {}.constructor = Deathstar`
 1.  Invokes the constructor function on the new object
-```// {}.constructor(`???`)```
-1.  Returns the object ```// {}```
+`// {}.constructor('???')`
+1.  Returns the object `// {}`
 
 ## Lab
 On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
