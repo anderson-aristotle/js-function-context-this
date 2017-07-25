@@ -143,7 +143,7 @@ let xwing = {
     }
 }
 
-xwing.setPilot("Luke Skywalker")
+xwing.setPilot('Luke Skywalker')
 // >> "This X-Wing has changed!"
 
 console.log(xwing.pilot)
@@ -173,6 +173,7 @@ Following best practices, we can add `use strict` to get consistent results
 
 ```js
 'use strict'
+
 const goBoom = function() {
     console.log('this is ', this)
 }
@@ -259,13 +260,13 @@ the convention of capitalized names:
 
 ```js
 const Deathstar = function (weapon) {
-  console.log("this is ", this)
-  this.emporer = "Darth Sidius"
+  console.log('this is ', this)
+  this.emporer = 'Darth Sidius'
   this.weapon = weapon
   this.whatIsThis = function(){
-    console.log("Inside whatIsThis, this is ", this)
+    console.log('Inside whatIsThis, this is ', this)
   }
-  console.log("this is ", this)
+  console.log('this is ', this)
 }
 
 let thatsNoMoon = new Deathstar('Mega giant huge laser')
@@ -299,19 +300,19 @@ Consider the following code:
 ​
 let user = {
   data: [
-          { name:"T. Woods", handicap:2 },
-          { name:"P. Mickelson", handicap:1 },
-          { name:"C. Austin", handicap:0 }
+          { name: 'T. Woods', handicap:2 },
+          { name: 'P. Mickelson', handicap:1 },
+          { name: 'C. Austin', handicap:0 }
         ],
   clickHandler: function(event){
     let randomNum = ((Math.random() * 2 | 0) + 1) - 1 // random number between 0 and 1​
     // This line is adding a random person from the data array to the text field​
-    $("input").val(this.data[randomNum].name + " " + this.data[randomNum].age)
+    $('input').val(this.data[randomNum].name + ' ' + this.data[randomNum].age)
   }
 }
 ​
 ​// Assign an eventHandler to the button's click event​
-$("button").on('click', user.clickHandler)
+$('button').on('click', user.clickHandler)
 ```
 
 What is happening and will this work?
@@ -320,7 +321,7 @@ With the `.bind()` method we can bind the context of user.clickHandler to the
 user object like so:
 
 ```javascript
-$("button").on('click', user.clickHandler.bind(user))
+$('button').on('click', user.clickHandler.bind(user))
 ```
 
 ## Summary
