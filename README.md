@@ -227,20 +227,25 @@ the fundamental difference is that ```call()``` accepts an argument list,
 while ```apply()``` accepts a single array of arguments.
 
 ```js
-const goBoom = function () {
-  console.log("this refers to ", this)
+const person = {
+    firstName: 'John',
+    lastName: 'Doe',
+    fullName: function() {
+        return this.firstName + ' ' + this.lastName
+    }
 }
 
-let deathstar = {
-  weapon: 'Planet destroying laser'
+const myObject = {
+    firstName: 'Mary',
+    lastName: 'Doe'
 }
 
-goBoom.call(deathstar)
-// this === deathstar
+person.fullName.call(myObject) // What will this return?
+// this === myObject
 ```
 
 **Context**: `this` refers to the passed object.  Here you would say
-"Call the function goBoom with deathstar as the context (this)".
+"Call the method fullName with myObject as the context (this)".
 
 ### Constructor Invocation Pattern
 

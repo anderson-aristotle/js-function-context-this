@@ -1,4 +1,3 @@
-
 -Show `this.alert()` example for window scope in browser
 
 - In Node, defining a variable in "global" scope wil actually be local to that module. The global object contains stuff like `require`, etc.
@@ -73,3 +72,26 @@ Why? Because we invoked this function/method at RUNTIME like this 'person.fullNa
 
 The Context is the object literal 'person'
 The 'this' pointer in the fullName method is the object literal we defined above, 'person'.
+
+### Call/Apply Invocation Pattern
+`.apply` example:
+
+```js
+const person = {
+  name: 'Ben'
+}
+
+const job = {
+  name: 'developer'
+}
+
+const newObj = {}
+
+function sayName(obj1, obj2){
+  console.log('this is: ', this)
+  console.log(obj1.name, obj2.name)
+}
+
+sayName.apply(null, [person, job])
+```
+The first argument sets the value of `this` when the function is executed. The second is an array of parameters for that function.
