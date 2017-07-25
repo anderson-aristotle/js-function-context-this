@@ -30,15 +30,15 @@ var xwing = {
         //this.pilot refers to the key pilot in the xwing object
         //this points to an object, but we don't know which one yet
         //pilot (on the right) is a reference to the first argument that is being passed to (anonymous) function that is //assigned to the setPilot property
-        this.pilot = pilot;
+        this.pilot = pilot
         //call update on this object
-        this.update();
+        this.update()
     },
     //update is a method that takes no arguments. It prints something to the console.
     update: function() {
-        console.log('This X-Wing has changed!');
+        console.log('This X-Wing has changed!')
     }
-};
+}
 ```
 
 * When I call setPilot on xwing, JavaScript looks at the xwing object to find the setPilot keyword.
@@ -51,7 +51,7 @@ xwing.setPilot("Luke Skywalker");
 "This X-Wing has changed!"
 
 ```js
-console.log(xwing.pilot);
+console.log(xwing.pilot)
 // >> "Luke Skywalker"
 ```
 
