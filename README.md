@@ -228,7 +228,7 @@ the fundamental difference is that `call()` accepts an argument list,
 while `apply()` accepts a single array of arguments.
 
 ```js
-const person = {
+const personOne = {
     firstName: 'John',
     lastName: 'Doe',
     fullName: function() {
@@ -236,13 +236,13 @@ const person = {
     }
 }
 
-const myObject = {
+const personTwo = {
     firstName: 'Mary',
-    lastName: 'Doe'
+    lastName: 'Smith'
 }
 
-person.fullName.call(myObject) // What will this return?
-// this === myObject
+personOne.fullName.call(personTwo) // What will this return?
+// this === personTwo
 ```
 
 **Context**: `this` refers to the passed object.  Here you would say

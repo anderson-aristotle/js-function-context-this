@@ -77,21 +77,23 @@ The 'this' pointer in the fullName method is the object literal we defined above
 `.apply` example:
 
 ```js
-const person = {
-  name: 'Ben'
+const personOne = {
+    firstName: 'John',
+    lastName: 'Doe',
+    fullNameIntro: function(greeting, message) {
+        return greeting + " " + this.firstName + " " + this.lastName + " " +message;
+    }
 }
 
-const job = {
-  name: 'developer'
+const personTwo = {
+    firstName:'Mary',
+    lastName: 'Smith',
 }
 
-const newObj = {}
+personOne.fullNameIntro.call(personTwo, 'Hello', 'how are you?');
+// returns 'Hello Mary Smith how are you'
 
-function sayName(obj1, obj2){
-  console.log('this is: ', this)
-  console.log(obj1.name, obj2.name)
-}
-
-sayName.apply(null, [person, job])
+personOne.fullNameIntro.apply(personTwo, ['Hello', 'how are you?']);
+// also returns 'Hello Mary Smith how are you'
 ```
 The first argument sets the value of `this` when the function is executed. The second is an array of parameters for that function.
