@@ -1,4 +1,3 @@
-
 -Show `this.alert()` example for window scope in browser
 
 - In Node, defining a variable in "global" scope wil actually be local to that module. The global object contains stuff like `require`, etc.
@@ -31,15 +30,15 @@ var xwing = {
         //this.pilot refers to the key pilot in the xwing object
         //this points to an object, but we don't know which one yet
         //pilot (on the right) is a reference to the first argument that is being passed to (anonymous) function that is //assigned to the setPilot property
-        this.pilot = pilot;
+        this.pilot = pilot
         //call update on this object
-        this.update();
+        this.update()
     },
     //update is a method that takes no arguments. It prints something to the console.
     update: function() {
-        console.log('This X-Wing has changed!');
+        console.log('This X-Wing has changed!')
     }
-};
+}
 ```
 
 * When I call setPilot on xwing, JavaScript looks at the xwing object to find the setPilot keyword.
@@ -52,7 +51,7 @@ xwing.setPilot("Luke Skywalker");
 "This X-Wing has changed!"
 
 ```js
-console.log(xwing.pilot);
+console.log(xwing.pilot)
 // >> "Luke Skywalker"
 ```
 
@@ -73,3 +72,28 @@ Why? Because we invoked this function/method at RUNTIME like this 'person.fullNa
 
 The Context is the object literal 'person'
 The 'this' pointer in the fullName method is the object literal we defined above, 'person'.
+
+### Call/Apply Invocation Pattern
+`.apply` example:
+
+```js
+const personOne = {
+    firstName: 'John',
+    lastName: 'Doe',
+    fullNameIntro: function(greeting, message) {
+        return greeting + " " + this.firstName + " " + this.lastName + " " +message;
+    }
+}
+
+const personTwo = {
+    firstName:'Mary',
+    lastName: 'Smith',
+}
+
+personOne.fullNameIntro.call(personTwo, 'Hello', 'how are you?');
+// returns 'Hello Mary Smith how are you'
+
+personOne.fullNameIntro.apply(personTwo, ['Hello', 'how are you?']);
+// also returns 'Hello Mary Smith how are you'
+```
+The first argument sets the value of `this` when the function is executed. The second is an array of parameters for that function.
