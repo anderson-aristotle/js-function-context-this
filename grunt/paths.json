@@ -4,10 +4,12 @@
       "assets/**/*.js",
       "grunt/**/*.js",
       "lib/**/*.js",
-      "spec/**/*.spec.js"
+      "spec/**/*.spec.js",
+      "spec/_all.js",
+      "Gruntfile.js"
     ],
     "spec": [
-      "spec/**/*.spec.js"
+      "spec/**/*.html"
     ],
     "lib": [
       "lib/**/*.js"
@@ -26,6 +28,12 @@
       "assets/scripts/**/*.json",
       "spec/**/*.json",
       "grunt/*.json"
+    ]
+  },
+
+  "sass": {
+    "all": [
+      "assets/styles/**/*.scss"
     ]
   }
 }

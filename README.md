@@ -287,7 +287,7 @@ How this breaks down:
 1.  Returns the object `// {}`
 
 ## Lab
-On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
+On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_function_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
 
 ## Binding
 

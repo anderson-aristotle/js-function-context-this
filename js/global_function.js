@@ -35,7 +35,7 @@ const person = {
 // Invoke the Global function
 // The execution "Context" is Global, or window in a browser.
 // So the 'this' pointer is window.
-showFullName() // Peter Ally
+showFullName()
 
 // "this" inside the showFullName () method that is defined inside the person object still refers to the person object, hence:
 person.showFullName() // Penelope Barrymore
