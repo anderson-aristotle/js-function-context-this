@@ -281,7 +281,7 @@ How this breaks down:
 
 1.  Creates a new empty object ({}) `// {}`
 1.  Attaches the constructor to the object as a property
-`// {}.constructor = Deathstar`
+`// {}.constructor = Planet`
 1.  Invokes the constructor function on the new object
 `// {}.constructor('???')`
 1.  Returns the object `// {}`
