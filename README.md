@@ -15,13 +15,9 @@ source of tricky bugs. Let's dig into what it references in different contexts.
 
 By the end of this, developers should be able to:
 
--   Write objectives that focus on demonstrating knowledge.
--   Write learning objectives that begin with an [imperative
-    verb](https://en.wikipedia.org/wiki/Imperative_mood).
--   Avoid objectives that start with "Use" or "Understand".
--   Rewrite objecives that begin with "Use" by inverting sentence structure.
--   End each objective with a period.
--   Write objectives on the whiteboard so they can be referenced during a talk.
+- Explain the difference between a value being determined at declaration versus runtime.
+- Read and follow the execution of code that uses `this` in different calling contexts.
+- Use `apply`, `call`, and `bind` to explicitly set the value of `this`.
 
 ## Preparation
 
@@ -31,68 +27,30 @@ By the end of this, developers should be able to:
 1.  Checkout to the `training` branch.
 1.  Install dependencies with `npm install`.
 
-Better preparation instructions may be found as
-[snippets](https://github.com/ga-wdi-boston/instructors/tree/master/snippets).
+## `this` Is A Reference
 
-It's a good idea to have students do these steps while you're writing objectives
-on the whiteboard.
+> We use this similar to the way we use pronouns in natural languages like
+>English and French. We write: “John is running fast because he is trying to
+>catch the train.” Note the use of the pronoun “he.” We could have written this:
+>“John is running fast because John is trying to catch the train.” We don’t
+>reuse “John” in this manner, for if we do, our family, friends, and colleagues
+>would abandon us. Yes, they would. In a similar aesthetic manner, we use the
+>this keyword as a shortcut, a referent to refer to an object.
+>
+> Source: [Understanding Javascript 'this' pointer.](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
-## Leading Topic Heading
+## `this` in the Global Scope Depends on the Environment
+**In browsers**
+- The top-level scope is the global scope.
+- In the top-level scope in browsers `this` is equivalent to `window`.
 
-Here is where the talk begins. If you have not already included framing above,
-it's appropriate to put it here. Link to introductory articles or documentation.
-Motivate the next section.
+**In Node.js**
+- The top-level scope is not the global scope.
+- Node does have a global variable named `global` and is documented [here](https://nodejs.org/api/globals.html#globals_global).
 
-Demos, exercises, and labs are labelled as such, followed by a colon and a
-description of the activity starting with an [imperative
-verb](https://en.wikipedia.org/wiki/Imperative_mood).
-
-## Demo: Write a Demo
-
-Demos are demonstrations, and developers should give their full attention to
-them. It's a great time for them to take notes about important concepts before
-applying them in an exercise.
-
-Demos correspond to the "I do" portion of scaffolding from consultant training.
-
-## Code-Along: Write an Code-Along
-
-During the code-along, developers should apply concepts covered in the previous
-demo, led by the consultant.
-This is their first chance to generalize concepts introduced. Exercises should
-be very focused, and flow natural into a lab.
-
-Exercises correspond to the "We do" portion of scaffolding from consultant
-training.
-
-## Lab: Write a Lab
-
-During labs, developers get to demonstrate their understanding of concepts from
-demos and applied knowledge from exercises. Labs are an opportunity for
-developers to build confidence, and also serve as a diagnostic tool for
-consultants to evaluate developer understanding.
-
-Labs should be timed explicitly using a timer. When estimating the time it will
-take to complete a lab, it is better to overestimate. During labs, consultants
-should circle the room and interact with developers, noting patterns and
-prompting with hints on how to complete the lab. If developers end early, a
-consultant may stop the lab timer. If developers do not finish in time, a
-consultant may give more time at her discretion based on current talk pace, the
-current estimate for the talk, and the importance of completing the lab while
-consultant support is available.
-
-Labs correspond to the "You do" portion of scaffolding from consultant
-training.
+**GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
 
 ## Additional Resources
-
--   Any useful links should be included in the talk material where the link is
-    first referenced.
--   Additional links for further study or exploration are appropriate in this
-    section.
--   Links to important parts of documentation not covered during the talk, or
-    tools tangentially used but not part of the focus of the talk, are also
-    appropriate.
 
 ## [License](LICENSE)
 
