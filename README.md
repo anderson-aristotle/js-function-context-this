@@ -138,7 +138,7 @@ alien.contact()
 
 #### Lab: method chaining
 
-Let's take advantage of this invocation pattern to impliment methods that can
+Let's take advantage of this invocation pattern to implement methods that can
 be chained on the object that they're called on. Open up `lib/method-chain.js`
 and change the `satellite` object so that the method invocation at the bottom
 of the file logs the message three times.
@@ -170,7 +170,7 @@ would say "the object receives the method".
 
 How this breaks down:
 
-1.  Creates a new empty object ({}) `// {}`
+1.  Creates a new empty object `// {}`
 1.  Attaches the constructor to the object as a property
 `// {}.constructor = Planet`
 1.  Invokes the constructor function on the new object
@@ -242,6 +242,7 @@ be the object on which the method is declared.
 ## Additional Resources
 
 -   [Functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+-   [JavaScript Basics - Execution Context](https://medium.com/dailyjs/javascript-basics-the-execution-context-and-the-lexical-environment-3505d4fe1be2)
 -   [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 -   [Understand JavaScript’s “this” With Clarity, and Master It | JavaScript is Sexy](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 -   [You-Dont-Know-JS/README.md at master · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
