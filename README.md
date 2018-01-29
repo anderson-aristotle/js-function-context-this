@@ -111,14 +111,10 @@ would say "a method is called on an object".  In this case the object is the
 **Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
 mode: `'use strict'`
 
-## Lab: `this` in global functions
+#### Lab: `this` in global functions
 
 Take a look at `lib/global-function.js`, then run it. Next, paste that function
 into the Node REPL and invoke it. Is the output the same? Why or why not?
-
-## Demo
-
-Let's take a look at the `global_function.js` file to see an example of this pattern. We are going to use `index.html` to execute this code.
 
 ### Method Invocation Pattern
 
@@ -140,7 +136,7 @@ alien.contact()
 
 **Context**: `this` refers to the host object.
 
-## Lab: method chaining
+#### Lab: method chaining
 
 Let's take advantage of this invocation pattern to impliment methods that can
 be chained on the object that they're called on. Open up `lib/method-chain.js`
@@ -155,7 +151,7 @@ with the `new` keyword while invoking a function.
 
 Constructors are very similar to Ruby class constructors, in that they
 represent proper nouns within our application. Therefore they should follow
-the convention of capitalized names:
+the convention of capitalized names.
 
 ```js
 const Planet = function (color, name) {
@@ -181,7 +177,80 @@ How this breaks down:
 `// {}.constructor('???')`
 1.  Returns the object `// {}`
 
+### Call/Apply Invocation Pattern
+
+Function objects have their own set of native methods, most notably are
+[`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+and [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply).
+These methods will invoke the function with a provided
+contextual object.
+While the syntax of these functions are almost identical,
+the fundamental difference is that `call()` accepts an argument list,
+while `apply()` accepts a single array of arguments.
+You won't need to use these methods often, but it's good to know they exist.
+
+#### Demo: Using `.call`
+
+Take a look at `lib/call.js`. What do you think will happen when we run it?
+
+**Context**: `this` refers to the passed object.  Here you would say
+"Call the method `fullName` with `personTwo` as the context (this)".
+
+## Fat arrow functions and `this`
+
+ES6 arrow functions behave differently with regards to `this`. Specifically,
+`this` inside a fat arrow function will refer to whatever `this` would be
+_outside_ of the arrow function's scope. In other words, arrow functions don't
+have "their own" `this`.
+
+```js
+'use strict'
+
+const blackHole = {
+  escaped: 'Whew! Our heroes escaped the black hole.',
+  tryToEscape: () => {
+    console.log(this.escaped)
+  }
+}
+
+blackHole.tryToEscape()
+// undefined, because `this` in global functions is undefined in strict mode
+```
+
+## Lab: binding `this`
+
+JavaScript also provides a method called `.bind`, which lets us create a new
+function that is identical to an existing function, except that `this` will be
+permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), then open `lib/bind.js` and use `.bind` to save our these poor
+astronauts from the black hole they've found their way into.
+
+## Summary
+
+1.  Is the function called with `new` (**new binding**)? If so, `this` is the
+newly constructed object.      `let bar = new Foo()`
+1.  Is the function called with `call` or `apply` (**explicit binding**), even
+hidden inside a `bind` *hard binding*? If so, `this` is the explicitly
+specified object.
+     `let bar = foo.call( obj2 )`
+1.  Is the function called with a context (**implicit binding**), otherwise
+known as an owning or containing object? If so, `this` is *that* context
+object.
+     `obj1.foo() // this === obj1`
+     `obj1.foo.call( obj2 ) // this === obj2`
+1.  Otherwise, default the `this` (**default binding**). If in `strict mode`,
+pick `undefined`, otherwise pick the `global` object.
+     `let bar = foo()`
+
+ Source: [You-Dont-Know-JS/ch2.md](https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&%20object%20prototypes/ch2.md)
+
 ## Additional Resources
+
+-   [Functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+-   [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
+-   [Understand JavaScript’s “this” With Clarity, and Master It | JavaScript is Sexy](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+-   [You-Dont-Know-JS/README.md at master · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
+-   [this - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+-   [Fat Arrow - Strongloop](https://strongloop.com/strongblog/an-introduction-to-javascript-es6-arrow-functions/)
 
 ## [License](LICENSE)
 
