@@ -50,6 +50,72 @@ By the end of this, developers should be able to:
 
 **GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
 
+## Demo: `this` Changes by Call Context
+
+A function can indiscriminately operate upon any object. When a function is invoked, it is bound to an object on which it operates. The contextual object on which a function operates is referenced using the keyword this.
+
+Watch as I run the following example in Node. What will each instance of `this` refer to at runtime?
+
+```js
+let rocket = {
+    destination: null,
+
+    setDestination: function(planet) {
+        this.destination = destination
+        this.blastOff()
+    },
+
+    blastOff: function() {
+        console.log(`VRROOOMM!! Off to ${this.destination}!`)
+    }
+}
+
+rocket.setDestination("Mars") // What will this log?
+```
+
+## The Four Patterns of Invocation
+
+We must *invoke* a function to run it (ie: call upon the function to do its
+thing). Amazingly, there are FOUR ways to invoke a function in JavaScript. This
+makes JS both amazingly flexible and absolutely insane.
+
+### Function Invocation Pattern
+
+When a function is invoked without explicit context, the function is bound to global
+scope:
+
+```js
+const goBoom = function() {
+    console.log('this is ', this)
+}
+
+goBoom() // what logs in the browser vs in node?
+```
+
+Following best practices, we can add `use strict` to get consistent results
+
+```js
+'use strict'
+
+const goBoom = function() {
+    console.log('this is ', this)
+}
+
+goBoom() // what logs in the browser vs in node?
+```
+
+**Context**: `this` refers to the `window` object (global scope).  Here we
+would say "a method is called on an object".  In this case the object is the
+`window`.
+
+**Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
+mode: `'use strict'`
+
+## Lab: `this` in global functions
+
+Take a look at `lib/global-function.js`, then run it. Next, paste that function
+into the Node REPL and invoke it. Is the output the same? Why or why not?
+
 ## Additional Resources
 
 ## [License](LICENSE)
