@@ -116,6 +116,71 @@ mode: `'use strict'`
 Take a look at `lib/global-function.js`, then run it. Next, paste that function
 into the Node REPL and invoke it. Is the output the same? Why or why not?
 
+## Demo
+
+Let's take a look at the `global_function.js` file to see an example of this pattern. We are going to use `index.html` to execute this code.
+
+### Method Invocation Pattern
+
+When a function is defined on an object, it is said to be a *method* of the
+object. When a method is invoked through its host object, the method is bound
+to its host:
+
+```js
+let alien = {
+    contact: function () {
+      console.log('We are:', this)
+      console.log('We come in peace.')
+  }
+}
+
+alien.contact()
+// this === alien
+```
+
+**Context**: `this` refers to the host object.
+
+## Lab: method chaining
+
+Let's take advantage of this invocation pattern to impliment methods that can
+be chained on the object that they're called on. Open up `lib/method-chain.js`
+and change the `satellite` object so that the method invocation at the bottom
+of the file logs the message three times.
+
+### Constructor Invocation Pattern
+
+Remember constructor functions from unit 1? Any function may act as a
+constructor for new object instances. New object instances may be constructed
+with the `new` keyword while invoking a function.
+
+Constructors are very similar to Ruby class constructors, in that they
+represent proper nouns within our application. Therefore they should follow
+the convention of capitalized names:
+
+```js
+const Planet = function (color, name) {
+    console.log('this is ', this)
+    this.name = name
+    this.color = color
+}
+
+const mercury = new Planet('Mercury', 'slightly brownish')
+const pluto = new Planet('Pluto', 'blue')
+// this === shiny new Planet instance
+```
+
+**Context**: `this` refers to the newly-created object instance.  Here we
+would say "the object receives the method".
+
+How this breaks down:
+
+1.  Creates a new empty object ({}) `// {}`
+1.  Attaches the constructor to the object as a property
+`// {}.constructor = Planet`
+1.  Invokes the constructor function on the new object
+`// {}.constructor('???')`
+1.  Returns the object `// {}`
+
 ## Additional Resources
 
 ## [License](LICENSE)
