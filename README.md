@@ -1,21 +1,31 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# JavaScript: Context \& `this`
+# JavaScript: `this`
+
+The keyword `this` in JavaScript can be a major point of a confusion and a
+source of tricky bugs. Let's dig into what it references in different contexts.
+
+## Prerequisites
+
+- [js-reference-types](https://git.generalassemb.ly/ga-wdi-boston/js-reference-types)
+- [js-functions-ins-and-outs](https://git.generalassemb.ly/ga-wdi-boston/js-functions-ins-and-outs)
+- [js-objects-this](https://git.generalassemb.ly/ga-wdi-boston/js-objects-this)
 
 ## Objectives
 
-By the end of this lesson, students should be able to:
+By the end of this, developers should be able to:
 
--   Recall whether or not `this` is determined at declaration.
--   Explain what `this` points to in each calling context.
--   Read and follow the execution context of code that uses different `this`
-idioms.
+- Explain the difference between a value being determined at declaration versus runtime.
+- Read and follow the execution of code that uses `this` in different calling contexts.
+- Use `apply`, `call`, and `bind` to explicitly set the value of `this`.
 
 ## Preparation
 
-1.  [Fork and clone](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
-this repository.
-1.  `npm install`
+1.  Fork and clone this repository.
+ [FAQ](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
+1.  Create a new branch, `training`, for your work.
+1.  Checkout to the `training` branch.
+1.  Install dependencies with `npm install`.
 
 ## `this` Is A Reference
 
@@ -40,114 +50,27 @@ this repository.
 
 **GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
 
-## Block Scope
-Scope refers to where variables and functions are accessible.
+## Demo: `this` Changes by Call Context
 
-Example 1:
-```js
-let a = 1
+A function can indiscriminately operate upon any object. When a function is invoked, it is bound to an object on which it operates. The contextual object on which a function operates is referenced using the keyword this.
 
-if (true) {
-  a = 2
-  console.log(a) // What logs?
-}
-console.log(a) // What logs?
-```
-
-Example 2:
-```js
-let a = 1
-
-if (true) {
-  let a = 2
-  console.log(a) // What logs?
-}
-console.log(a) // What logs?
-```
-
-Example 3:
-```js
-const reAssign = function () {
-  a = b
-  console.log( a )
-}
-
-let a = 1
-let b = 2
-
-reAssign() // What logs?
-console.log(a) // What logs?
-```
-
-Example 4:
-```js
-const reAssign = function (a, b) {
-  a = b
-  console.log( a )
-}
-
-let a = 1
-let b = 2
-
-reAssign() // What logs?
-console.log(a) // What logs?
-```
-
-Example 5:
-```js
-const reAssign = function (a, b) {
-  a = b
-  console.log( a )
-}
-
-let a = 1
-let b = 2
-
-reAssign(a, b) // What logs?
-console.log(a) // What logs?
-```
-
-Scope can be helpful in understanding call context.
+Watch as I run the following example in Node. What will each instance of `this` refer to at runtime?
 
 ```js
-const reAssign = function (a, b) {
-  a = b
-  console.log( a )
-}
+let rocket = {
+    destination: null,
 
-reAssign(2, 3) // what logs
-reAssign(10, 11) // what logs
-reAssign(10, 11) // what logs
-```
-
-The value of our parameters `a` and `b` depend on when the function is called,
-we can not define what `a` or `b` are until the function has been called.
-
-## `this` Changes by Call Context
-
-A function can indiscriminately operate upon *any* object. When a function is
-invoked, it is *bound* to an object on which it operates. The *contextual*
-object on which a function operates is referenced using the keyword `this`.
-
-```js
-let xwing = {
-    pilot: null,
-
-    setPilot: function(pilot) {
-        this.pilot = pilot
-        this.update()
+    setDestination: function(planet) {
+        this.destination = destination
+        this.blastOff()
     },
 
-    update: function() {
-        console.log('This X-Wing has changed!')
+    blastOff: function() {
+        console.log(`VRROOOMM!! Off to ${this.destination}!`)
     }
 }
 
-xwing.setPilot('Luke Skywalker')
-// >> "This X-Wing has changed!"
-
-console.log(xwing.pilot)
-// >> "Luke Skywalker"
+rocket.setDestination("Mars") // What will this log?
 ```
 
 ## The Four Patterns of Invocation
@@ -188,9 +111,10 @@ would say "a method is called on an object".  In this case the object is the
 **Gotcha**: This behavior has changed in ECMAScript 5 only when using strict
 mode: `'use strict'`
 
-## Demo
+#### Lab: `this` in global functions
 
-Let's take a look at the `global_function.js` file to see an example of this pattern. We are going to use `index.html` to execute this code.
+Take a look at `lib/global-function.js`, then run it. Next, paste that function
+into the Node REPL and invoke it. Is the output the same? Why or why not?
 
 ### Method Invocation Pattern
 
@@ -199,74 +123,41 @@ object. When a method is invoked through its host object, the method is bound
 to its host:
 
 ```js
-let deathstar = {
-    goBoom: function() {
-      console.log('this is ', this)
+let alien = {
+    contact: function () {
+      console.log('We are:', this)
+      console.log('We come in peace.')
   }
 }
 
-deathstar.goBoom()
-// this === deathstar
+alien.contact()
+// this === alien
 ```
 
 **Context**: `this` refers to the host object.
 
+#### Lab: method chaining
 
-## Code Along
-
-Together, let's take a look at `object_literal.js` and try to determine what's happening in there.
-
-### Call/Apply Invocation Pattern
-
-Function objects have their own set of native methods, most notably are
-[`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
-and [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply).
-These methods will invoke the function with a provided
-contextual object.
-While the syntax of these functions are almost identical,
-the fundamental difference is that `call()` accepts an argument list,
-while `apply()` accepts a single array of arguments.
-
-```js
-const personOne = {
-    firstName: 'John',
-    lastName: 'Doe',
-    fullName: function() {
-        return this.firstName + ' ' + this.lastName
-    }
-}
-
-const personTwo = {
-    firstName: 'Mary',
-    lastName: 'Smith'
-}
-
-personOne.fullName.call(personTwo) // What will this return?
-// this === personTwo
-```
-
-**Context**: `this` refers to the passed object.  Here you would say
-"Call the method fullName with myObject as the context (this)".
+Let's take advantage of this invocation pattern to implement methods that can
+be chained on the object that they're called on. Open up `lib/method-chain.js`
+and change the `satellite` object so that the method invocation at the bottom
+of the file logs the message three times.
 
 ### Constructor Invocation Pattern
 
-Any function may act as a constructor for new object instances. New object
-instances may be constructed with the `new` keyword while invoking a
-function.
+Remember constructor functions from unit 1? Any function may act as a
+constructor for new object instances. New object instances may be constructed
+with the `new` keyword while invoking a function.
 
 Constructors are very similar to Ruby class constructors, in that they
 represent proper nouns within our application. Therefore they should follow
-the convention of capitalized names:
+the convention of capitalized names.
 
 ```js
 const Planet = function (color, name) {
     console.log('this is ', this)
     this.name = name
     this.color = color
-    this.whatIsThis = function () {
-        console.log('Inside whatIsThis, this is ', this)
-  }
-  console.log('this is ', this)
 }
 
 const mercury = new Planet('Mercury', 'slightly brownish')
@@ -279,86 +170,79 @@ would say "the object receives the method".
 
 How this breaks down:
 
-1.  Creates a new empty object ({}) `// {}`
+1.  Creates a new empty object `// {}`
 1.  Attaches the constructor to the object as a property
 `// {}.constructor = Planet`
 1.  Invokes the constructor function on the new object
 `// {}.constructor('???')`
 1.  Returns the object `// {}`
 
-## Lab
-On your own, see if you can predict the results of running `invoking_a_function_as_a_function.js`, `invoking_a_function_as_a_method.js`, `invoking_a_function_with_a_function_constructor.js`, and `invoking_a_function_with_a_function_method.js` before running them using the `index.html` file as we did earlier.
+### Call/Apply Invocation Pattern
 
-## Binding
+Function objects have their own set of native methods, most notably are
+[`.call`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
+and [`.apply`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply).
+These methods will invoke the function with a provided
+contextual object.
+While the syntax of these functions are almost identical,
+the fundamental difference is that `call()` accepts an argument list,
+while `apply()` accepts a single array of arguments.
+You won't need to use these methods often, but it's good to know they exist.
 
-Consider the following code:
+#### Demo: Using `.call`
 
-```javascript
-//            <button>Get Random Person</button>​
-​//        <input type="text">​
-​
-​
-let user = {
-  data: [
-          { name: 'T. Woods', handicap:2 },
-          { name: 'P. Mickelson', handicap:1 },
-          { name: 'C. Austin', handicap:0 }
-        ],
-  clickHandler: function(event){
-    let randomNum = ((Math.random() * 2 | 0) + 1) - 1 // random number between 0 and 1​
-    // This line is adding a random person from the data array to the text field​
-    $('input').val(this.data[randomNum].name + ' ' + this.data[randomNum].handicap)
+Take a look at `lib/call.js`. What do you think will happen when we run it?
+
+**Context**: `this` refers to the passed object.  Here you would say
+"Call the method `fullName` with `personTwo` as the context (this)".
+
+## Fat arrow functions and `this`
+
+ES6 arrow functions behave differently with regards to `this`. Specifically,
+`this` inside a fat arrow function will refer to whatever `this` would be
+_outside_ of the arrow function's scope. In other words, arrow functions don't
+have "their own" `this`.
+
+```js
+'use strict'
+
+const blackHole = {
+  escaped: 'Whew! Our heroes escaped the black hole.',
+  tryToEscape: () => {
+    console.log(this.escaped)
   }
 }
-​
-​// Assign an eventHandler to the button's click event​
-$('button').on('click', user.clickHandler)
+
+blackHole.tryToEscape()
+// undefined, because `this` in global functions is undefined in strict mode
 ```
 
-What is happening and will this work?
+## Lab: binding `this`
 
-With the `.bind()` method we can bind the context of user.clickHandler to the
-user object like so:
+JavaScript also provides a method called `.bind`, which lets us create a new
+function that is identical to an existing function, except that `this` will be
+permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), then open `lib/bind.js` and use `.bind` to save our these poor
+astronauts from the black hole they've found their way into.
 
-```javascript
-$('button').on('click', user.clickHandler.bind(user))
-```
+## `this` cheatsheet
 
-## Summary
+How to determine what `this` refers to:
 
-1.  Is the function called with `new` (**new binding**)? If so, `this` is the
-newly constructed object.      `let bar = new Foo()`
-1.  Is the function called with `call` or `apply` (**explicit binding**), even
-hidden inside a `bind` *hard binding*? If so, `this` is the explicitly
-specified object.
-     `let bar = foo.call( obj2 )`
-1.  Is the function called with a context (**implicit binding**), otherwise
-known as an owning or containing object? If so, `this` is *that* context
+1. In a function invoked with `new`, `this` will be the constructed
 object.
-     `obj1.foo() // this === obj1`
-     `obj1.foo.call( obj2 ) // this === obj2`
-1.  Otherwise, default the `this` (**default binding**). If in `strict mode`,
-pick `undefined`, otherwise pick the `global` object.
-     `let bar = foo()`
-
- Source: [You-Dont-Know-JS/ch2.md](https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&%20object%20prototypes/ch2.md)
-
-## Lab (Pair)
-
-Pair with a partner and follow the instructions in [`index.html`](index.html) for the remaining files that we have not already looked at.
-Your goal in this assignment is to gain experience using the debugger tool in order to further your understanding of what is happening in the code. Take time to contemplate the execution flow, and note any questions
-you have for discussion.
-
-Many of these scripts use the special `debugger` keyword to stop JS execution
-and open your console. Use this opportunity to inspect your environment (perhaps
-by looking at `this`?) and then
-[continue](https://developer.chrome.com/devtools/docs/javascript-debugging).
-
-When you're ready to begin, run `grunt serve` and navigate to (http://localhost:7165/)
+1. In a function invoked with `.call` or `.apply`, `this` will be the
+first argument passed to call or apply.
+1. In a function created with `.bind`, `this` will be the first argument passed
+to `.bind`.
+1. In a (non-fat arrow) function declared as a method on an object, `this` will
+be the object on which the method is declared.
+1. If none of the above apply, `this` will be either the global object, or
+`undefined` depending on whether `'use strict'` is enabled.
 
 ## Additional Resources
 
 -   [Functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+-   [JavaScript Basics - Execution Context](https://medium.com/dailyjs/javascript-basics-the-execution-context-and-the-lexical-environment-3505d4fe1be2)
 -   [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
 -   [Understand JavaScript’s “this” With Clarity, and Master It | JavaScript is Sexy](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 -   [You-Dont-Know-JS/README.md at master · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes)

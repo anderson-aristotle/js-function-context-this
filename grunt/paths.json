@@ -1,18 +1,19 @@
 {
   "src": {
     "all": [
-      "assets/**/*.js",
-      "grunt/**/*.js",
+      "bin/**/*.js",
       "lib/**/*.js",
       "spec/**/*.spec.js",
-      "spec/_all.js",
-      "Gruntfile.js"
+      "snippets/**/*.js"
     ],
     "spec": [
-      "spec/**/*.html"
+      "spec/**/*.spec.js"
     ],
     "lib": [
       "lib/**/*.js"
+    ],
+    "snippets": [
+      "snippets/**/*.js"
     ]
   },
 
@@ -25,15 +26,10 @@
 
   "json": {
     "all": [
-      "assets/scripts/**/*.json",
+      "lib/**/*.json",
       "spec/**/*.json",
-      "grunt/*.json"
-    ]
-  },
-
-  "sass": {
-    "all": [
-      "assets/styles/**/*.scss"
+      "grunt/*.json",
+      "snippets/**/*.json"
     ]
   }
 }
