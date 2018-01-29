@@ -224,24 +224,20 @@ function that is identical to an existing function, except that `this` will be
 permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), then open `lib/bind.js` and use `.bind` to save our these poor
 astronauts from the black hole they've found their way into.
 
-## Summary
+## `this` cheatsheet
 
-1.  Is the function called with `new` (**new binding**)? If so, `this` is the
-newly constructed object.      `let bar = new Foo()`
-1.  Is the function called with `call` or `apply` (**explicit binding**), even
-hidden inside a `bind` *hard binding*? If so, `this` is the explicitly
-specified object.
-     `let bar = foo.call( obj2 )`
-1.  Is the function called with a context (**implicit binding**), otherwise
-known as an owning or containing object? If so, `this` is *that* context
+How to determine what `this` refers to:
+
+1. In a function invoked with `new`, `this` will be the constructed
 object.
-     `obj1.foo() // this === obj1`
-     `obj1.foo.call( obj2 ) // this === obj2`
-1.  Otherwise, default the `this` (**default binding**). If in `strict mode`,
-pick `undefined`, otherwise pick the `global` object.
-     `let bar = foo()`
-
- Source: [You-Dont-Know-JS/ch2.md](https://github.com/getify/You-Dont-Know-JS/blob/58dbf4f867be0d9c51dfc341765e4e4211608aa1/this%20&%20object%20prototypes/ch2.md)
+1. In a function invoked with `.call` or `.apply`, `this` will be the
+first argument passed to call or apply.
+1. In a function created with `.bind`, `this` will be the first argument passed
+to `.bind`.
+1. In a (non-fat arrow) function declared as a method on an object, `this` will
+be the object on which the method is declared.
+1. If none of the above apply, `this` will be either the global object, or
+`undefined` depending on whether `'use strict'` is enabled.
 
 ## Additional Resources
 
