@@ -61,7 +61,7 @@ let rocket = {
     destination: null,
 
     setDestination: function(planet) {
-        this.destination = destination
+        this.destination = planet
         this.blastOff()
     },
 
