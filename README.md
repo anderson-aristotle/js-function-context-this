@@ -22,7 +22,7 @@ By the end of this, developers should be able to:
 ## Preparation
 
 1. Fork and clone this repository.
- [FAQ](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
+ [FAQ](https://git.generalassemb.ly/ga-wdi-boston/meta/wiki/ForkAndClone)
 1. Create a new branch, `training`, for your work.
 1. Checkout to the `training` branch.
 1. Install dependencies with `npm install`.
@@ -36,7 +36,7 @@ By the end of this, developers should be able to:
 > reuse “John” in this manner, for if we do, our family, friends, and colleagues
 > would abandon us. Yes, they would. In a similar aesthetic manner, we use the
 > this keyword as a shortcut, a referent to refer to an object.
-> Source: [Understanding Javascript 'this' pointer.](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+> Source: [Understanding Javascript 'this' pointer.](https://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
 ## `this` in the Global Scope Depends on the Environment
 
