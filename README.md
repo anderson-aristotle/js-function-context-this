@@ -21,40 +21,46 @@ By the end of this, developers should be able to:
 
 ## Preparation
 
-1.  Fork and clone this repository.
+1. Fork and clone this repository.
  [FAQ](https://github.com/ga-wdi-boston/meta/wiki/ForkAndClone)
-1.  Create a new branch, `training`, for your work.
-1.  Checkout to the `training` branch.
-1.  Install dependencies with `npm install`.
+1. Create a new branch, `training`, for your work.
+1. Checkout to the `training` branch.
+1. Install dependencies with `npm install`.
 
 ## `this` Is A Reference
 
 > We use this similar to the way we use pronouns in natural languages like
->English and French. We write: “John is running fast because he is trying to
->catch the train.” Note the use of the pronoun “he.” We could have written this:
->“John is running fast because John is trying to catch the train.” We don’t
->reuse “John” in this manner, for if we do, our family, friends, and colleagues
->would abandon us. Yes, they would. In a similar aesthetic manner, we use the
->this keyword as a shortcut, a referent to refer to an object.
->
+> English and French. We write: “John is running fast because he is trying to
+> catch the train.” Note the use of the pronoun “he.” We could have written this:
+> “John is running fast because John is trying to catch the train.” We don’t
+> reuse “John” in this manner, for if we do, our family, friends, and colleagues
+> would abandon us. Yes, they would. In a similar aesthetic manner, we use the
+> this keyword as a shortcut, a referent to refer to an object.
 > Source: [Understanding Javascript 'this' pointer.](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
 
 ## `this` in the Global Scope Depends on the Environment
-**In browsers**
+
+### In browsers
+
 - The top-level scope is the global scope.
 - In the top-level scope in browsers `this` is equivalent to `window`.
 
-**In Node.js**
+### In Node.js
+
 - The top-level scope is not the global scope.
 - Node does have a global variable named `global` and is documented [here](https://nodejs.org/api/globals.html#globals_global).
 
-**GOTCHA** Global variables, methods, or functions can easily create name conflicts and bugs in the global object.
+**GOTCHA** Global variables, methods, or functions can easily create name
+conflicts and bugs in the global object.
 
 ## Demo: `this` Changes by Call Context
 
-A function can indiscriminately operate upon any object. When a function is invoked, it is bound to an object on which it operates. The contextual object on which a function operates is referenced using the keyword this.
+A function can indiscriminately operate upon any object. When a function is
+invoked, it is bound to an object on which it operates. The contextual object
+on which a function operates is referenced using the keyword this.
 
-Watch as I run the following example in Node. What will each instance of `this` refer to at runtime?
+Watch as I run the following example in Node. What will each instance of `this`
+refer to at runtime?
 
 ```js
 let rocket = {
@@ -81,8 +87,8 @@ makes JS both amazingly flexible and absolutely insane.
 
 ### Function Invocation Pattern
 
-When a function is invoked without explicit context, the function is bound to global
-scope:
+When a function is invoked without explicit context, the function is bound to
+global scope:
 
 ```js
 const goBoom = function() {
@@ -170,12 +176,10 @@ would say "the object receives the method".
 
 How this breaks down:
 
-1.  Creates a new empty object `// {}`
-1.  Attaches the constructor to the object as a property
-`// {}.constructor = Planet`
-1.  Invokes the constructor function on the new object
-`// {}.constructor('???')`
-1.  Returns the object `// {}`
+1. Creates a new empty object `// {}`
+1. Attaches the constructor to the object as a property `// {}.constructor = Planet`
+1. Invokes the constructor function on the new object `// {}.constructor('???')`
+1. Returns the object `// {}`
 
 ### Call/Apply Invocation Pattern
 
@@ -221,36 +225,37 @@ blackHole.tryToEscape()
 
 JavaScript also provides a method called `.bind`, which lets us create a new
 function that is identical to an existing function, except that `this` will be
-permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind), then open `lib/bind.js` and use `.bind` to save these poor
-astronauts from the black hole they've found their way into.
+permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind),
+then open `lib/bind.js` and use `.bind` to save these poor astronauts from the
+black hole they've found their way into.
 
 ## `this` cheatsheet
 
 How to determine what `this` refers to:
 
 1. In a function invoked with `new`, `this` will be the constructed
-object.
+  object.
 1. In a function invoked with `.call` or `.apply`, `this` will be the
-first argument passed to call or apply.
+  first argument passed to call or apply.
 1. In a function created with `.bind`, `this` will be the first argument passed
-to `.bind`.
+  to `.bind`.
 1. In a (non-fat arrow) function declared as a method on an object, `this` will
-be the object on which the method is declared.
+  be the object on which the method is declared.
 1. If none of the above apply, `this` will be either the global object, or
-`undefined` depending on whether `'use strict'` is enabled.
+  `undefined` depending on whether `'use strict'` is enabled.
 
 ## Additional Resources
 
--   [Functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
--   [JavaScript Basics - Execution Context](https://medium.com/dailyjs/javascript-basics-the-execution-context-and-the-lexical-environment-3505d4fe1be2)
--   [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
--   [Understand JavaScript’s “this” With Clarity, and Master It | JavaScript is Sexy](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
--   [You-Dont-Know-JS/README.md at master · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
--   [this - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
--   [Fat Arrow - Strongloop](https://strongloop.com/strongblog/an-introduction-to-javascript-es6-arrow-functions/)
+- [Functions - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions)
+- [JavaScript Basics - Execution Context](https://medium.com/dailyjs/javascript-basics-the-execution-context-and-the-lexical-environment-3505d4fe1be2)
+- [Everything you wanted to know about JavaScript scope](http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/)
+- [Understand JavaScript’s “this” With Clarity, and Master It | JavaScript is Sexy](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
+- [You-Dont-Know-JS/README.md at master · getify/You-Dont-Know-JS](https://github.com/getify/You-Dont-Know-JS/blob/master/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes)
+- [this - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+- [Fat Arrow - Strongloop](https://strongloop.com/strongblog/an-introduction-to-javascript-es6-arrow-functions/)
 
 ## [License](LICENSE)
 
-1.  All content is licensed under a CC­BY­NC­SA 4.0 license.
-1.  All software code is licensed under GNU GPLv3. For commercial use or
+1. All content is licensed under a CC­BY­NC­SA 4.0 license.
+1. All software code is licensed under GNU GPLv3. For commercial use or
     alternative licensing, please contact legal@ga.co.
