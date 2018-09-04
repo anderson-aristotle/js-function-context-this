@@ -8,7 +8,7 @@ source of tricky bugs. Let's dig into what it references in different contexts.
 ## Prerequisites
 
 - [js-reference-types](https://git.generalassemb.ly/ga-wdi-boston/js-reference-types)
-- [js-functions-ins-and-outs](https://git.generalassemb.ly/ga-wdi-boston/js-functions-ins-and-outs)
+- [js-functions](https://git.generalassemb.ly/ga-wdi-boston/js-functions)
 - [js-objects-this](https://git.generalassemb.ly/ga-wdi-boston/js-objects-this)
 
 ## Objectives
