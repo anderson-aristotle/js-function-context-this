@@ -160,7 +160,7 @@ represent proper nouns within our application. Therefore they should follow
 the convention of capitalized names.
 
 ```js
-const Planet = function (color, name) {
+const Planet = function (name, color) {
     console.log('this is ', this)
     this.name = name
     this.color = color
