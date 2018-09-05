@@ -57,7 +57,7 @@ conflicts and bugs in the global object.
 
 A function can indiscriminately operate upon any object. When a function is
 invoked, it is bound to an object on which it operates. The contextual object
-on which a function operates is referenced using the keyword this.
+on which a function operates is referenced using the keyword `this`.
 
 Watch as I run the following example in Node. What will each instance of `this`
 refer to at runtime?
