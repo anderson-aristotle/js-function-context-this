@@ -225,7 +225,28 @@ blackHole.tryToEscape()
 
 JavaScript also provides a method called `.bind`, which lets us create a new
 function that is identical to an existing function, except that `this` will be
-permanently set to whatever we want! Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind),
+permanently set to whatever we want!
+
+We can use `.bind` like this:
+
+```js
+const moon = { name: 'The Moon' }
+const mars = { name: 'Mars' }
+
+const rocket = {
+  blastOff: function () {
+    return `We are blasting off to ${this.name}!`
+  }
+}
+
+const moonBlast = rocket.blastOff.bind(moon)
+const marsBlast = rocket.blastOff.bind(mars)
+
+console.log(moonBlast()) // 'We are blasting off to The Moon!'
+console.log(marsBlast()) // 'We are blasting off to Mars!'
+```
+
+Read up a bit on `.bind` [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind),
 then open `lib/bind.js` and use `.bind` to save these poor astronauts from the
 black hole they've found their way into.
 
