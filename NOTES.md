@@ -2,7 +2,8 @@
 
 - Show `this.alert()` example for window scope in browser
 
-- In Node, defining a variable in "global" scope wil actually be local to that module. The global object contains stuff like `require`, etc.
+- In Node, defining a variable in "global" scope wil actually be local to that
+  module. The global object contains stuff like `require`, etc.
 
 ## Code annotations for README code
 
@@ -62,15 +63,21 @@ personOne.fullNameIntro.apply(personTwo, ['Hello', 'how are you?']);
 // also returns 'Hello Mary Smith how are you'
 ```
 
-The first argument sets the value of `this` when the function is executed. The second is an array of parameters for that function.
+The first argument sets the value of `this` when the function is executed. The
+second is an array of parameters for that function.
 
 ## Why `this` is undefined in global functions
 
 [Taken from this stack overflow](https://stackoverflow.com/questions/9822561/why-is-this-in-an-anonymous-function-undefined-when-using-strict)
 
-> It's because, until ECMAscript 262 edition 5, there was a big confusion if people who where using the constructor pattern, forgot to use the new keyword. If you forgot to use new when calling a constructor function in ES3, this referenced the global object (window in a browser) and you would clobber the global object with variables.
+> It's because, until ECMAscript 262 edition 5, there was a big confusion if
+people who where using the constructor pattern, forgot to use the new keyword.
+If you forgot to use new when calling a constructor function in ES3, this
+referenced the global object (window in a browser) and you would clobber the
+global object with variables.
 
-> That was terrible behavior and so people at ECMA decided, just to set this to undefined.
+> That was terrible behavior and so people at ECMA decided, just to set this to
+undefined.
 
 > Example:
 
@@ -79,7 +86,8 @@ function myConstructor() {
     this.a = 'foo';
     this.b = 'bar';
 }
-
-myInstance = new myConstructor() // all cool, all fine. a and b were created in a new local object
-myBadInstance = myConstructor() // oh my gosh, we just created a, and b on the window object
+// all cool, all fine. a and b were created in a new local object
+myInstance = new myConstructor()
+// oh my gosh, we just created a, and b on the window object
+myBadInstance = myConstructor()
 ```
